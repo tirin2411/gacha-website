@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gacha Box — Allison</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="stage">
+      <!-- Thêm file nhạc -->
+      <audio id="openBoxSound" src="./assets/audio/videoplayback.m4a" preload="auto"></audio>
+      <audio id="rCardSound" src="./assets/audio/R_card.m4a" preload="auto"></audio>
+      <audio id="srCardSound" src="./assets/audio/SR_card.m4a" preload="auto"></audio>
+      <audio id="ssrCardSound" src="./assets/audio/SSR_card.m4a" preload="auto"></audio>
+
+      <div class="scene" id="scene">
+        <img id="box" src="./assets/img/box_dong_1.png" alt="Hộp quà" />
+
+        <div class="burst" id="burst"></div>
+        <div class="spark s1"></div>
+        <div class="spark s2"></div>
+        <div class="spark s3"></div>
+
+        <div id="envelopeContainer"></div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup">
+      <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px">
+        🎉 Xin chúc mừng! 🎁
+      </div>
+      <p>Bạn nhận được: <strong id="prizeName"></strong></p>
+      <div style="margin-top: 12px">
+        <button id="closeBtn">OK</button>
+      </div>
+    </div>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

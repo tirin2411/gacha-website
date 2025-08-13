@@ -1,0 +1,378 @@
+:root {
+        --box-w: 100%;
+        --box-h: 100%;
+      }
+      body {
+        background: #0f1720;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        color: #fff;
+      }
+
+      .stage {
+        width: calc(var(--box-w) + 100px);
+        text-align: center;
+      }
+
+      .scene {
+        position: relative;
+        width: var(--box-w);
+        height: var(--box-h);
+        margin: 0 auto;
+        perspective: 1200px;
+        user-select: none;
+      }
+
+      /* Hình hộp */
+      #box {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        cursor: pointer;
+        transform-origin: center bottom;
+        transition: transform 180ms ease;
+        object-fit: cover;
+        object-position: center -120px;
+      }
+
+      /* Rung */
+      .shake {
+        animation: shake 560ms ease;
+      }
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        20% {
+          transform: rotate(4deg) translateY(-2px);
+        }
+        40% {
+          transform: rotate(-4deg) translateY(0);
+        }
+        60% {
+          transform: rotate(3deg) translateY(-1px);
+        }
+        80% {
+          transform: rotate(-2deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      /* Burst (ánh sáng) */
+      .burst {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        width: 50%;
+        height: 80%;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(8px);
+        opacity: 0;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.8) 0%,
+          transparent 70%
+        );
+        z-index: 5;
+      }
+      .burst.show {
+        animation: burstIn 1000ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+      }
+      @keyframes burstIn {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        70% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.4);
+          opacity: 0;
+        }
+      }
+
+      /* Các tia sáng nhỏ */
+      .spark {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(
+          circle,
+          #fff 0%,
+          #ffd980 60%,
+          rgba(255, 200, 50, 0) 100%
+        );
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .spark.s1 {
+        animation: sparkMove 900ms 120ms forwards;
+        transform-origin: center;
+      }
+      .spark.s2 {
+        animation: sparkMove 900ms 160ms forwards;
+        transform-origin: center;
+      }
+      .spark.s3 {
+        animation: sparkMove 900ms 200ms forwards;
+        transform-origin: center;
+      }
+
+      @keyframes sparkMove {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.4);
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-150px, -80px) scale(0.8);
+        }
+      }
+
+      /* Envelope (lá thư) */
+      .envelope {
+        position: absolute;
+        width: 280px;
+        height: 240px;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -30%) rotate(-15deg) scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .envelope img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      @keyframes envelopeFly1 {
+        0% {
+          transform: translate(-50%, -10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(-10%, -50%) rotate(360deg) scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(150%, -350%) rotate(720deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly2 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(-70%, -100%) rotate(-360deg) scale(1.3);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-200%, -400%) rotate(-720deg) scale(0.4);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly3 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(50%, -80%) rotate(360deg) scale(1.4);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(250%, -300%) rotate(1080deg) scale(0.3);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly4 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(-30%, -120%) rotate(720deg) scale(1.5);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(0%, -450%) rotate(1440deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly5 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(100%, -60%) rotate(-720deg) scale(1.3);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(200%, -500%) rotate(-1440deg) scale(0.4);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly6 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(-90%, -30%) rotate(540deg) scale(1.4);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-250%, -250%) rotate(1080deg) scale(0.3);
+          opacity: 0;
+        }
+      }
+
+      @keyframes envelopeFly7 {
+        0% {
+          transform: translate(-50%, 10%) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        40% {
+          transform: translate(20%, -150%) rotate(-540deg) scale(1.5);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(150%, -500%) rotate(-1080deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      /* Freeze overlay (slight zoom) */
+      .freeze {
+        animation: freezeZoom 900ms forwards;
+      }
+      @keyframes freezeZoom {
+        0% {
+          transform: scale(1);
+          filter: none;
+        }
+        100% {
+          transform: scale(1.03) translateY(-6px);
+          filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6));
+        }
+      }
+
+      /* Popup */
+      .popup {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        min-width: 280px;
+        background: linear-gradient(180deg, #fff, #f8f8f8);
+        color: #111;
+        padding: 18px 22px;
+        border-radius: 12px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        display: none;
+        z-index: 999;
+        text-align: center;
+      }
+      .popup.show {
+        display: block;
+        animation: popupIn 240ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+      }
+      @keyframes popupIn {
+        from {
+          transform: translate(-50%, -50%) scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .popup button {
+        background: #ff7aa2;
+        border: none;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      /* Small caption */
+      .hint {
+        margin-top: 16px;
+        color: #cbd5e1;
+        font-size: 13px;
+        opacity: 0.95;
+      }
+
+      .envelope-drop {
+        position: absolute;
+        left: 50%;
+        top: -100px;
+        width: 280px;
+        height: 240px;
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+        animation: dropEnvelope 500ms ease-in-out forwards;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .envelope-drop img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      @keyframes dropEnvelope {
+        0% {
+          opacity: 0;
+          transform: translate(150%, -50%) rotate(-120deg) scale(1);
+        }
+        20% {
+          opacity: 0;
+          transform: translate(150%, 0%) rotate(-20deg) scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(150%, 50%) rotate(120deg) scale(1);
+        }
+        80% {
+          opacity: 1;
+          transform: translate(150%, 100%) rotate(360deg) scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(150%, 150%) rotate(380deg) scale(1);
+        }
+      }
