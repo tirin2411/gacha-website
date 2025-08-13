@@ -73,7 +73,7 @@ function launchEnvelopes(count) {
     env.style.animationDelay = `${i * 0.15}s`;
     env.style.animationDuration = `${200 + Math.random() * 500}ms`;
 
-    env.innerHTML = `<img src="./assets/img/la_thu.png" alt="Envelope" />`;
+    env.innerHTML = `<img src="../assets/img/la_thu.png" alt="Envelope" />`;
     container.appendChild(env);
 
     env.addEventListener("animationend", () => env.remove());
@@ -81,16 +81,15 @@ function launchEnvelopes(count) {
 }
 
 box.addEventListener("click", async () => {
-  
   if (animLock) return;
-  animLock = true;
   document.getElementById("openBoxSound").play();
+  animLock = true;
   // 1) Rung hộp
   // box.classList.add('shake');
-  box.src = "./assets/img/hop_qua_mo.png";
+  box.src = "../assets/img/hop_qua_mo.png";
   // small delay so shake is visible
   // await wait(200);
-  box.src = "./assets/img/hop_qua_mo_thu.png";
+  box.src = "../assets/img/hop_qua_mo_thu.png";
   // 2) Burst + sparks
   burst.classList.add("show");
   document.querySelectorAll(".spark").forEach((s) => (s.style.opacity = 1));
@@ -111,13 +110,13 @@ box.addEventListener("click", async () => {
   const dropEnv = document.createElement("div");
   dropEnv.classList.add("envelope-drop");
 
-  let imgSrc = "./assets/img/la_thu.png";
+  let imgSrc = "../assets/img/la_thu.png";
   document.getElementById("rCardSound").play();
   if (card.rarity === "SR") {
-    imgSrc = "./assets/img/la_thu_sr.png";
+    imgSrc = "../assets/img/la_thu_sr.png";
     document.getElementById("srCardSound").play();
   } else if (card.rarity === "SSR") {
-    imgSrc = "./assets/img/la_thu_ssr.png";
+    imgSrc = "../assets/img/la_thu_ssr.png";
     document.getElementById("ssrCardSound").play();
   }
 
@@ -136,7 +135,7 @@ box.addEventListener("click", async () => {
 
 closeBtn.addEventListener("click", () => {
   popup.classList.remove("show");
-  box.src = "./assets/img/box_dong_1.png";
+  box.src = "../assets/img/box_dong_1.png";
   // reset to initial state so user can open again
   resetScene();
   animLock = false;
@@ -157,3 +156,4 @@ function resetScene() {
 function wait(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
+
