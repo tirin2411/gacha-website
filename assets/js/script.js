@@ -12,19 +12,19 @@ const cards = [
   {
     name: "R Character",
     rarity: "R",
-    rate: 85,
+    rate: 70,
     variations: ["trai", "gái", "già", "trẻ"],
   },
   {
     name: "SR Character",
     rarity: "SR",
-    rate: 10,
+    rate: 20,
     variations: ["trai", "gái"],
   },
   {
     name: "SSR Character",
     rarity: "SSR",
-    rate: 5,
+    rate: 10,
     variations: ["trai", "gái"],
   },
 ];
@@ -124,7 +124,7 @@ box.addEventListener("click", async () => {
   scene.appendChild(dropEnv);
 
   // Đợi lá thư rơi xong rồi mới show popup
-  await wait(1300);
+  await wait(800);
 
   prizeName.textContent = `${card.name} - ${card.variation} (${card.rarity})`;
   prizeName.className = `rarity-${card.rarity}`;
@@ -156,5 +156,6 @@ function resetScene() {
 function wait(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
+
 
 
